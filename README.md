@@ -1,0 +1,2 @@
+# Topshelf.MicrosoftDependencyInjection
+MicrosoftDependencyInjection integration for Topshelf
