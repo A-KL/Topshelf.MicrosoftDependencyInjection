@@ -1,6 +1,3 @@
-# Topshelf.MicrosoftDependencyInjection
-MicrosoftDependencyInjection integration for Topshelf
-
 Topshelf.MicrosoftDependencyInjection
 ================
 
