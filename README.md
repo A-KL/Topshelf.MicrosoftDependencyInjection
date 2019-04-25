@@ -3,7 +3,7 @@ Topshelf.MicrosoftDependencyInjection
 
 Topshelf.MicrosoftDependencyInjection provides extensions to construct your service class from your MicrosoftDependencyInjection service provider.
 
-
+https://ci.appveyor.com/api/projects/status/b79k1390i3515uwt?svg=true
 
 Example Usage
 -------------

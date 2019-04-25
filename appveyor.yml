@@ -1,0 +1,12 @@
+#---------------------------------#
+#  Build Script                   #
+#---------------------------------#
+build_script:
+  - ps: .\build.ps1 -Target BuildServer
+
+#---------------------------------#
+#        Branches to build        #
+#---------------------------------#
+branches:
+  only:
+    - master
