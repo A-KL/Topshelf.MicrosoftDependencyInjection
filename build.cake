@@ -3,6 +3,10 @@
 
 var CONFIGURATION = Argument<string>("c", "Release");
 
+string NUGET_FEED() {
+    return EnvironmentVariableOrFail("NUGET_FEED");
+}
+
 string NUGET_APIKEY() {
     return EnvironmentVariableOrFail("NUGET_API_KEY");
 }
@@ -124,7 +128,7 @@ Task("Pack").Does(() => {
 
 Task("Push").Does(() => {
     var settings = new DotNetCoreNuGetPushSettings {
-         Source = "https://api.nuget.org/v3/index.json",
+         Source = NUGET_FEED(),
          ApiKey = NUGET_APIKEY()
      };
 
