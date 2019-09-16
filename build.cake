@@ -3,6 +3,10 @@
 
 var CONFIGURATION = Argument<string>("c", "Release");
 
+string NUGET_APIKEY() {
+    return EnvironmentVariableOrFail("NUGET_API_KEY");
+}
+
 var src = Directory("./src");
 var dst = Directory("./artifacts");
 var test = Directory("./test");
@@ -119,9 +123,14 @@ Task("Pack").Does(() => {
 });
 
 Task("Push").Does(() => {
-    Information("Pushing the nuget packages...");
+    var settings = new DotNetCoreNuGetPushSettings {
+         Source = "https://api.nuget.org/v3/index.json",
+         ApiKey = NUGET_APIKEY()
+     };
 
-
+    foreach(var package in GetFiles(packages.Path + "/*.nupkg").Where(p => !p.FullPath.Contains(".symbols."))) {
+        DotNetCoreNuGetPush(package.ToString(), settings);
+    }
 });
 
 Task("Default")

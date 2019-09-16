@@ -1,12 +1,8 @@
-#---------------------------------#
-#  Build Script                   #
-#---------------------------------#
+image: Visual Studio 2017
 build_script:
-  - ps: .\build.ps1 -Target BuildServer
-
-#---------------------------------#
-#        Branches to build        #
-#---------------------------------#
-branches:
-  only:
-    - master
+- ps: .\build.ps1 -Target BuildServer
+test: off
+skip_branch_with_pr: true
+nuget:
+  account_feed: false
+  project_feed: false
