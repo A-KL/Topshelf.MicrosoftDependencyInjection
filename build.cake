@@ -3,8 +3,8 @@
 
 var CONFIGURATION = Argument<string>("c", "Release");
 
-string NUGET_APIKEY() {
-    return EnvironmentVariableOrFail("NUGET_API_KEY");
+string NUGET_FEED() {
+    return EnvironmentVariableOrFail("NUGET_FEED");
 }
 
 var src = Directory("./src");
@@ -124,8 +124,7 @@ Task("Pack").Does(() => {
 
 Task("Push").Does(() => {
     var settings = new DotNetCoreNuGetPushSettings {
-         Source = "https://api.nuget.org/v3/index.json",
-         ApiKey = NUGET_APIKEY()
+         Source = NUGET_FEED()
      };
 
     foreach(var package in GetFiles(packages.Path + "/*.nupkg").Where(p => !p.FullPath.Contains(".symbols."))) {
